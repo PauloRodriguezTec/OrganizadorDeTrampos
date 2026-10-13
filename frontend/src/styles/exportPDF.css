@@ -1,0 +1,179 @@
+/* Export PDF Styles */
+.export-container {
+  background: white;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.export-container h3 {
+  margin: 0 0 25px 0;
+  color: #333;
+  font-size: 1.3rem;
+}
+
+.export-info {
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 25px;
+  border-left: 4px solid #667eea;
+}
+
+.export-info p {
+  margin: 10px 0;
+  color: #333;
+  font-size: 0.95rem;
+}
+
+.export-info strong {
+  color: #667eea;
+}
+
+.filtros-aplicados {
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px solid #ddd;
+}
+
+.filtros-aplicados strong {
+  display: block;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.filtros-aplicados ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.filtros-aplicados li {
+  padding: 5px 0;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.filtros-aplicados li:before {
+  content: "✓ ";
+  color: #28a745;
+  font-weight: bold;
+  margin-right: 8px;
+}
+
+.export-buttons {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+}
+
+.btn-pdf,
+.btn-csv {
+  padding: 14px 24px;
+  border: none;
+  border-radius: 5px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  flex: 1;
+  min-width: 200px;
+}
+
+.btn-pdf {
+  background: linear-gradient(135deg, #d84315 0%, #bf360c 100%);
+  color: white;
+}
+
+.btn-pdf:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(216, 67, 21, 0.4);
+}
+
+.btn-csv {
+  background: linear-gradient(135deg, #388e3c 0%, #1b5e20 100%);
+  color: white;
+}
+
+.btn-csv:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(56, 142, 60, 0.4);
+}
+
+.export-preview {
+  background: #f8f9fa;
+  padding: 25px;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+  overflow-x: auto;
+}
+
+.export-preview h4 {
+  margin: 0 0 20px 0;
+  color: #333;
+  font-size: 1.1rem;
+}
+
+.preview-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.preview-table thead {
+  background: #e0e0e0;
+}
+
+.preview-table th {
+  padding: 12px;
+  text-align: left;
+  font-weight: 600;
+  color: #333;
+  border-bottom: 2px solid #bbb;
+}
+
+.preview-table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid #ddd;
+  color: #555;
+}
+
+.preview-table tbody tr:hover {
+  background: #f0f0f0;
+}
+
+.export-preview p {
+  text-align: center;
+  color: #999;
+  font-size: 0.9rem;
+  margin-top: 15px;
+}
+
+@media (max-width: 768px) {
+  .export-buttons {
+    flex-direction: column;
+  }
+
+  .btn-pdf,
+  .btn-csv {
+    width: 100%;
+    min-width: auto;
+  }
+
+  .preview-table {
+    font-size: 0.8rem;
+  }
+
+  .preview-table th,
+  .preview-table td {
+    padding: 8px;
+  }
+
+  .export-preview {
+    margin-left: -30px;
+    margin-right: -30px;
+    border-radius: 0;
+    padding: 15px;
+  }
+}

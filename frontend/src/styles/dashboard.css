@@ -1,0 +1,135 @@
+/* Dashboard Styles */
+.dashboard-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.dashboard-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 30px;
+  border-radius: 10px;
+  margin-bottom: 30px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard-header h1 {
+  margin: 0 0 10px 0;
+  font-size: 2.5rem;
+}
+
+.dashboard-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.dashboard-heading p {
+  margin-top: 8px;
+  opacity: 0.85;
+}
+
+.logout-button {
+  padding: 9px 15px;
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  border-radius: 4px;
+  background: transparent;
+  color: white;
+  font: inherit;
+  cursor: pointer;
+}
+
+.logout-button:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.dashboard-error,
+.dashboard-loading {
+  margin: 0 0 18px;
+  color: #8c332b;
+}
+
+.total-info {
+  margin: 0;
+  font-size: 1.2rem;
+  opacity: 0.95;
+}
+
+.total-info strong {
+  font-size: 1.4rem;
+  display: block;
+  margin-top: 5px;
+}
+
+/* Tabs Navigation */
+.tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+  border-bottom: 2px solid #e0e0e0;
+  padding-bottom: 10px;
+}
+
+.tab {
+  padding: 12px 20px;
+  border: none;
+  background: #f0f0f0;
+  color: #333;
+  cursor: pointer;
+  border-radius: 5px 5px 0 0;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  border-bottom: 3px solid transparent;
+}
+
+.tab:hover {
+  background: #e0e0e0;
+  transform: translateY(-2px);
+}
+
+.tab.ativo {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-bottom: 3px solid #667eea;
+}
+
+/* Content Area */
+.aba-content {
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .dashboard-heading {
+    align-items: flex-start;
+  }
+
+  .dashboard-header h1 {
+    font-size: 1.5rem;
+  }
+
+  .tabs {
+    flex-direction: column;
+  }
+
+  .tab {
+    width: 100%;
+    text-align: left;
+  }
+}
