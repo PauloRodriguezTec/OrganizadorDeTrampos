@@ -1,0 +1,57 @@
+Organizador de Trâmpos
+
+Resumo
+- Este projeto é uma aplicação web para registrar, consultar e controlar trabalhos realizados por técnicos em diferentes locais, com foco em organização e acompanhamento financeiro.
+- A aplicação possui autenticação de usuários, cadastro de trabalhos, filtros por técnico, local e período, gráficos, totais acumulados e exportação em PDF.
+
+Funcionalidades principais
+- Cadastro e login de usuários com senha protegida e sessão persistente.
+- Registro de trabalhos com dados como data, local, técnico, consumo e cache.
+- Listagem dos trabalhos em uma tabela organizada por data.
+- Filtros por técnico, local e intervalo de datas.
+- Cálculo de totais gerais e totais por técnico/local.
+- Visualização dos dados em gráficos.
+- Exportação do relatório em PDF.
+- Persistência local em SQLite, sem necessidade de banco externo.
+
+Estrutura do programa
+- backend/
+  - server.js: inicia o servidor Express e registra as rotas da API.
+  - src/database.js: cria e configura o banco SQLite, além da chave JWT.
+  - src/routes/: define as rotas de autenticação e de trabalhos.
+  - src/controllers/: contém a lógica dos endpoints de login, cadastro e manipulação dos trabalhos.
+  - src/middleware/autenticar.js: valida o token de sessão do usuário.
+
+- frontend/
+  - src/app.jsx: configura o roteamento e controla o estado da sessão do usuário.
+  - src/pages/: páginas da interface, como login/cadastro e dashboard.
+  - src/components/: componentes reutilizáveis (tabela, filtros, gráficos, formulário e exportação PDF).
+  - src/services/: comunicação com a API e funções de cálculo/filtragem de dados.
+  - src/styles/: arquivos CSS da interface.
+
+Fluxo geral da aplicação
+1. O usuário acessa a tela de login ou cadastro.
+2. Após autenticar, o frontend envia requisições para a API backend.
+3. O backend valida o usuário e salva/consulta os dados no SQLite.
+4. O dashboard exibe os trabalhos com filtros, resumo financeiro e gráficos.
+5. O usuário pode exportar o relatório em PDF com os dados filtrados.
+
+Tecnologias principais
+- Frontend: React + Vite
+- Backend: Node.js + Express
+- Banco de dados: SQLite
+- Autenticação: JWT + bcrypt
+- Exportação: PDFKit
+
+Como executar
+- Frontend:
+  cd frontend
+  npm install
+  npm run dev
+
+- Backend:
+  cd backend
+  npm install
+  npm run dev
+
+O projeto foi pensado para manter o gerenciamento de trabalhos simples, rápido e centralizado em um único ambiente local.
