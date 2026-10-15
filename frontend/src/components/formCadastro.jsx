@@ -12,16 +12,25 @@ function FormCadastro({ onAdicionar }) {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+
+    if (name === "consumacao" || name === "cache") {
+      setFormData({
+        ...formData,
+        [name]: value === "" ? "" : Number(value)
+      });
+      return;
+    }
+
     setFormData({
       ...formData,
-      [name]: name === "consumacao" || name === "cache" ? parseFloat(value) || "" : value
+      [name]: value
     });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (!formData.data || !formData.local || !formData.tecnico || !formData.consumacao || !formData.cache) {
+    if (!formData.data || !formData.local || !formData.tecnico || formData.consumacao === "" || formData.cache === "") {
       alert("Por favor, preencha todos os campos!");
       return;
     }
