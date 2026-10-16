@@ -155,6 +155,43 @@ exports.exportarPDF = (req, res) => {
       doc.moveDown();
     });
 
+    const totais = trabalhos.reduce((acumulado, trabalho) => {
+      const consumacao = Number(trabalho.consumacao);
+      const cache = Number(trabalho.cache);
+      acumulado.geral.consumacao += consumacao;
+      acumulado.geral.cache += cache;
+      acumulado.geral.total += consumacao + cache;
+
+      const tecnico = acumulado.porTecnico[trabalho.tecnico] || {
+        consumacao: 0,
+        cache: 0,
+        total: 0
+      };
+      tecnico.consumacao += consumacao;
+      tecnico.cache += cache;
+      tecnico.total += consumacao + cache;
+      acumulado.porTecnico[trabalho.tecnico] = tecnico;
+      return acumulado;
+    }, {
+      geral: { consumacao: 0, cache: 0, total: 0 },
+      porTecnico: {}
+    });
+
+    doc.moveDown();
+    doc.fontSize(14).text("Totais");
+    doc.moveDown(0.5);
+    doc.fontSize(11).text(`Total geral de consumação: R$ ${totais.geral.consumacao.toFixed(2)}`);
+    doc.text(`Total geral de cachê: R$ ${totais.geral.cache.toFixed(2)}`);
+    doc.text(`Total geral (consumação + cachê): R$ ${totais.geral.total.toFixed(2)}`);
+    doc.moveDown(0.5);
+    doc.fontSize(12).text("Totais por técnico");
+    Object.entries(totais.porTecnico).forEach(([tecnico, valores]) => {
+      doc.fontSize(11).text(tecnico);
+      doc.text(`  Consumação: R$ ${valores.consumacao.toFixed(2)}`);
+      doc.text(`  Cachê: R$ ${valores.cache.toFixed(2)}`);
+      doc.text(`  Total (consumação + cachê): R$ ${valores.total.toFixed(2)}`);
+    });
+
     doc.end();
   } catch (err) {
     res.status(500).json({ error: err.message });
