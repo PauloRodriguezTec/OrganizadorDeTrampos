@@ -1,6 +1,6 @@
 import "../styles/table.css";
 
-function Table({ dados, total }) {
+function Table({ dados, total, onVisualizar, onEditar, onExcluir }) {
   const consumacaoTotal = dados.reduce((acc, d) => acc + d.consumacao, 0);
   const cacheTotal = dados.reduce((acc, d) => acc + d.cache, 0);
 
@@ -38,6 +38,7 @@ function Table({ dados, total }) {
               <th>Consumação</th>
               <th>Cache</th>
               <th>Total</th>
+              <th>Ações</th>
             </tr>
           </thead>
           <tbody>
@@ -50,6 +51,11 @@ function Table({ dados, total }) {
                 <td>R$ {d.consumacao.toFixed(2)}</td>
                 <td>R$ {d.cache.toFixed(2)}</td>
                 <td className="total">R$ {(d.consumacao + d.cache).toFixed(2)}</td>
+                <td className="row-actions">
+                  <button type="button" onClick={() => onVisualizar(d)}>Detalhes</button>
+                  <button type="button" onClick={() => onEditar(d)}>Editar</button>
+                  <button type="button" className="delete-action" onClick={() => onExcluir(d)}>Excluir</button>
+                </td>
               </tr>
             ))}
           </tbody>

@@ -1,13 +1,13 @@
 import { useState } from "react";
 import "../styles/formCadastro.css";
 
-function FormCadastro({ onAdicionar }) {
+function FormCadastro({ trabalho, onAdicionar, onSalvar, onCancelar }) {
   const [formData, setFormData] = useState({
-    data: new Date().toISOString().split("T")[0],
-    local: "",
-    tecnico: "",
-    consumacao: "",
-    cache: ""
+    data: trabalho?.data || new Date().toISOString().split("T")[0],
+    local: trabalho?.local || "",
+    tecnico: trabalho?.tecnico || "",
+    consumacao: trabalho?.consumacao ?? "",
+    cache: trabalho?.cache ?? ""
   });
 
   const handleChange = (e) => {
@@ -27,7 +27,7 @@ function FormCadastro({ onAdicionar }) {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!formData.data || !formData.local || !formData.tecnico || formData.consumacao === "" || formData.cache === "") {
@@ -35,7 +35,10 @@ function FormCadastro({ onAdicionar }) {
       return;
     }
 
-    onAdicionar(formData);
+    const sucesso = trabalho
+      ? await onSalvar(formData)
+      : await onAdicionar(formData);
+    if (sucesso === false) return;
 
     setFormData({
       data: new Date().toISOString().split("T")[0],
@@ -48,7 +51,7 @@ function FormCadastro({ onAdicionar }) {
 
   return (
     <div className="form-container">
-      <h3>➕ Adicionar Novo Trâmpo</h3>
+      <h3>{trabalho ? "✏️ Editar Trâmpo" : "➕ Adicionar Novo Trâmpo"}</h3>
       <form onSubmit={handleSubmit} className="cadastro-form">
         <div className="form-group">
           <label htmlFor="data">Data:</label>
@@ -119,7 +122,10 @@ function FormCadastro({ onAdicionar }) {
         </div>
 
         <div className="form-actions">
-          <button type="submit" className="btn-submit">✅ Adicionar</button>
+          <button type="submit" className="btn-submit">{trabalho ? "Salvar alterações" : "✅ Adicionar"}</button>
+          {trabalho && (
+            <button type="button" className="btn-cancel" onClick={onCancelar}>Cancelar</button>
+          )}
         </div>
       </form>
     </div>

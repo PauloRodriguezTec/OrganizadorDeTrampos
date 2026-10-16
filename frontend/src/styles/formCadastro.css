@@ -58,6 +58,18 @@
   margin-top: 20px;
 }
 
+.form-actions .btn-cancel {
+  width: 100%;
+  margin-top: 10px;
+  padding: 12px;
+  border: 1px solid #bbb;
+  border-radius: 5px;
+  background: white;
+  color: #444;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
 .btn-submit {
   width: 100%;
   padding: 14px;
