@@ -59,6 +59,24 @@ SQLITE_PATH=./data/organizador.sqlite
 
 O frontend usa `http://localhost:5000` por padrão. Para outra URL, defina `VITE_API_URL` no ambiente do Vite.
 
+## ☁️ Deploy na Netlify
+
+Em produção o projeto roda inteiramente na Netlify:
+
+- **Frontend**: o build do Vite (`frontend/dist`) é publicado como site estático, com fallback para `index.html` (rotas do React Router).
+- **API**: `netlify/functions/api.mts` atende todas as rotas `/api/*` (mesmas rotas do backend Express).
+- **Banco**: Netlify Database (Postgres gerenciado) via Drizzle ORM. O schema fica em `db/schema.ts` e as migrações em `netlify/database/migrations/`, aplicadas automaticamente a cada deploy.
+
+Ao alterar o schema, gere uma nova migração com:
+
+```bash
+npx drizzle-kit generate --name descricao_da_mudanca
+```
+
+Para rodar tudo localmente como na Netlify: `npm install && npm --prefix frontend install && netlify dev`.
+
+Opcionalmente defina `JWT_SECRET` nas variáveis de ambiente do site; sem ela, uma chave é gerada e guardada no banco.
+
 ## 📦 Dependências Principais
 
 ### Frontend

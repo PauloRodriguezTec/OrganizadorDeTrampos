@@ -2,9 +2,10 @@
   "name": "organizadordetrampos",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "netlify dev",
+    "build": "npm --prefix frontend run build",
+    "db:generate": "drizzle-kit generate"
   },
   "repository": {
     "type": "git",
@@ -13,15 +14,26 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
+  "type": "module",
   "bugs": {
     "url": "https://github.com/PauloRodriguezTec/OrganizadorDeTrampos/issues"
   },
   "homepage": "https://github.com/PauloRodriguezTec/OrganizadorDeTrampos#readme",
   "dependencies": {
-    "axios": "^1.20.0",
-    "cors": "^2.8.6",
-    "express": "^5.2.1",
+    "@netlify/database": "^2.0.2",
+    "@netlify/functions": "^6.1.0",
+    "bcryptjs": "^3.0.3",
+    "drizzle-orm": "^1.0.0-beta.22",
+    "jsonwebtoken": "^9.0.3",
     "pdfkit": "^0.20.2"
+  },
+  "devDependencies": {
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/pdfkit": "^0.17.7",
+    "drizzle-kit": "^1.0.0-beta.22"
+  },
+  "private": true,
+  "engines": {
+    "node": ">=22"
   }
 }
