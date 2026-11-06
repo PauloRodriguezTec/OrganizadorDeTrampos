@@ -1,0 +1,13 @@
+[build]
+  command = "npm --prefix frontend ci && npm --prefix frontend run build"
+  publish = "frontend/dist"
+
+[functions]
+  # pdfkit lê arquivos de fontes do disco em tempo de execução
+  external_node_modules = ["pdfkit"]
+
+# SPA: rotas do React Router (/login, /cadastro...) caem no index.html
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
